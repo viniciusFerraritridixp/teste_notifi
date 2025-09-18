@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 28 25% 15%;
+    --foreground: 30 12% 95%;
+
+    --card: 30 30% 20%;
+    --card-foreground: 30 12% 95%;
+
+    --popover: 30 30% 20%;
+    --popover-foreground: 30 12% 95%;
+
+    --primary: 25 65% 55%;
+    --primary-foreground: 30 12% 95%;
+
+    --secondary: 30 25% 25%;
+    --secondary-foreground: 30 12% 95%;
+
+    --muted: 30 20% 30%;
+    --muted-foreground: 30 8% 70%;
+
+    --accent: 35 60% 50%;
+    --accent-foreground: 30 12% 95%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 30 15% 35%;
+    --input: 30 15% 35%;
+    --ring: 25 65% 55%;
+
+    --radius: 1rem;
+    
+    /* Menu specific colors */
+    --menu-bg: 28 35% 18%;
+    --menu-item: 30 40% 25%;
+    --menu-hover: 25 50% 45%;
+    
+    /* Product card colors */
+    --product-card: 30 35% 22%;
+    --product-overlay: 0 0% 0% / 0.4;
+    
+    /* Gradients */
+    --gradient-warm: linear-gradient(135deg, hsl(25 65% 55%), hsl(35 60% 50%));
+    --gradient-card: linear-gradient(145deg, hsl(30 40% 25%), hsl(30 35% 22%));
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  --secondary-background: 0 0% 100%; /* branco para backgrounds secundários */
+  --secondary-bg: var(--secondary-background);
+  }
+
+  .dark {
+    --background: 28 25% 15%;
+    --foreground: 30 12% 95%;
+
+    --card: 30 30% 20%;
+    --card-foreground: 30 12% 95%;
+
+    --popover: 30 30% 20%;
+    --popover-foreground: 30 12% 95%;
+
+    --primary: 25 65% 55%;
+    --primary-foreground: 30 12% 95%;
+
+    --secondary: 30 25% 25%;
+    --secondary-foreground: 30 12% 95%;
+
+    --muted: 30 20% 30%;
+    --muted-foreground: 30 8% 70%;
+
+    --accent: 35 60% 50%;
+    --accent-foreground: 30 12% 95%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 30 15% 35%;
+    --input: 30 15% 35%;
+    --ring: 25 65% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  --secondary-background: 0 0% 100%; /* branco para backgrounds secundários (dark mantém white para contraste quando desejado) */
+  --secondary-bg: var(--secondary-background);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* Utility: fundo secundário branco */
+  .bg-secondary-white {
+    background-color: hsl(var(--secondary-bg));
+  }
+}
+
+/* ======================= Page Slide Animations ======================= */
+@layer utilities {
+  @keyframes slide-forward-enter {
+    0% { opacity: 0; transform: translateX(60px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slide-backward-enter {
+    0% { opacity: 0; transform: translateX(-60px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slide-fade-enter {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-slide-forward { animation: slide-forward-enter 380ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .animate-slide-backward { animation: slide-backward-enter 380ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .animate-slide-reset { animation: slide-fade-enter 320ms ease-out; }
+
+  /* Reduce motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-slide-forward,
+    .animate-slide-backward,
+    .animate-slide-reset { animation: none; }
+  }
+}

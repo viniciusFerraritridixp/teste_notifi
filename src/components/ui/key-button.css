@@ -1,0 +1,12 @@
+.key-button-text {
+  font-weight: inherit !important;
+}
+
+.key-button-text * {
+  font-weight: inherit !important;
+}
+
+/* Sobrescrever qualquer classe do Tailwind */
+div.key-button-text {
+  font-weight: var(--font-weight) !important;
+}
